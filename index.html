@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC26 World Draft</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="game-header">
+            <h1>해축 DRAFT</h1>
+
+            <div class="db-selector">
+                <label>
+                    <input type="radio" name="db_source" value="5world" checked>
+                    <span>5대리그</span>
+                </label>
+                <label>
+                    <input type="radio" name="db_source" value="all">
+                    <span>전체</span>
+                </label>
+            </div>
+
+            <div class="stats-board">
+                <div class="stat-item">
+                    <span class="label">TEAM OVR</span>
+                    <span class="value" id="team-ovr">0</span>
+                </div>
+                <button id="reset-btn" class="icon-btn" aria-label="Reset Squad">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4 12C4 16.4183 7.58172 20 12 20C14.1502 20 16.102 19.1517 17.5647 17.757M4 12C4 7.58172 7.58172 4 12 4C14.0041 4 15.8361 4.73685 17.2528 5.96246M4 12V6M17.2528 5.96246V3M17.2528 5.96246H13"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="field-container">
+            <!-- 4-3-3 Formation Layout (Flex Rows) -->
+            <div class="formation-board">
+                <!-- FW Line (3) -->
+                <div class="line-row fw-line">
+                    <div class="player-slot" data-position="LW" data-role="FW">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">LW</span>
+                    </div>
+                    <div class="player-slot" data-position="ST" data-role="FW">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">ST</span>
+                    </div>
+                    <div class="player-slot" data-position="RW" data-role="FW">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">RW</span>
+                    </div>
+                </div>
+
+                <!-- MF Line (3) -->
+                <div class="line-row mf-line">
+                    <div class="player-slot" data-position="CM_L" data-role="MF">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">CM</span>
+                    </div>
+                    <div class="player-slot" data-position="CM_C" data-role="MF">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">CM</span>
+                    </div>
+                    <div class="player-slot" data-position="CM_R" data-role="MF">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">CM</span>
+                    </div>
+                </div>
+
+                <!-- DF Line (4) -->
+                <div class="line-row df-line">
+                    <div class="player-slot" data-position="LB" data-role="DF">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">LB</span>
+                    </div>
+                    <div class="player-slot" data-position="CB_L" data-role="DF">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">CB</span>
+                    </div>
+                    <div class="player-slot" data-position="CB_R" data-role="DF">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">CB</span>
+                    </div>
+                    <div class="player-slot" data-position="RB" data-role="DF">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">RB</span>
+                    </div>
+                </div>
+
+                <!-- GK Line (1) -->
+                <div class="line-row gk-line">
+                    <div class="player-slot gk-slot" data-position="GK" data-role="GK">
+                        <div class="card-placeholder">+</div>
+                        <span class="pos-label">GK</span>
+                    </div>
+                </div>
+
+                <!-- Chemistry Info (Auto Generated) -->
+                <div id="chemistry-board" class="chemistry-board">
+                    <!-- e.g. <span>🇪🇸 Spain (5)</span> <span>🏟️ Real Madrid (3)</span> -->
+                </div>
+            </div>
+        </main>
+
+        <footer class="legal-footer">
+            <p>Data & Assets source from FC26.</p>
+            <p>This is a non-commercial fan project. All rights belong to EA Sports.</p>
+        </footer>
+    </div>
+
+    <!-- Draft Modal -->
+    <div id="draft-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-pos-title">Select Player</h2>
+                <button id="close-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="draft-options" id="draft-options">
+                <!-- Player cards will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- html2canvas Library -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+    <!-- Data Files -->
+    <script src="./data/data_5world.js"></script>
+    <script src="./data/data_all.js"></script>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
